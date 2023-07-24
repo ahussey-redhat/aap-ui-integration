@@ -1,0 +1,55 @@
+---
+schemaVersion: 2.1.0
+metadata:
+  name: cerebral-stratum-frontend
+components:
+  - name: tools
+    container:
+      env:
+        - name: CHE_DASHBOARD_URL
+          value: 'https://devspaces.apps.sandbox-m3.1530.p1.openshiftapps.com'
+        - name: CHE_PLUGIN_REGISTRY_URL
+          value: 'https://devspaces.apps.sandbox-m3.1530.p1.openshiftapps.com/plugin-registry/v3'
+        - name: CHE_PLUGIN_REGISTRY_INTERNAL_URL
+          value: 'http://plugin-registry.crw.svc:8080/v3'
+        - name: OPENVSX_REGISTRY_URL
+          value: 'https://open-vsx.org'
+      image: 'registry.redhat.io/devspaces/udi-rhel8:latest'
+      memoryLimit: 1G
+      mountSources: true
+      sourceMapping: /projects
+  - name: nodejs
+    container:
+      cpuLimit: "2.0"
+      cpuRequest: 200m
+      memoryLimit: 4Gi
+      memoryRequest: 256Mi
+      image: 'registry.redhat.io/rhel9/nodejs-18:latest'
+      mountSources: true
+      sourceMapping: /projects
+      memoryLimit: 2G
+      endpoints:
+        - exposure: public
+          name: nodejs
+          protocol: http
+          targetPort: 3000
+      command:
+        - sleep
+        - infinity
+commands:
+  - exec:
+      commandLine: npm install
+      component: nodejs
+      group:
+        kind: build
+      label: Download dependencies
+      workingDir: '${PROJECTS_ROOT}/cerebralstratum-frontend'
+    id: 1-dependencies
+  - exec:
+      commandLine: npm run start:dev
+      component: nodejs
+      group:
+        kind: run
+      label: Run the web app
+      workingDir: '${PROJECTS_ROOT}/cerebralstratum-frontend'
+    id: 2-run
