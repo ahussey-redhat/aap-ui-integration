@@ -1,7 +1,7 @@
 ---
 schemaVersion: 2.1.0
 metadata:
-  name: cerebral-stratum-frontend
+  name: aap-catalogue
 components:
   - name: tools
     container:
@@ -38,18 +38,18 @@ components:
         - infinity
 commands:
   - exec:
-      commandLine: npm install
+      commandLine: git submodule update --init --recursive patternfly-react-seed && cd patternfly-react-seed && npm install
       component: nodejs
       group:
         kind: build
-      label: Download dependencies
-      workingDir: '${PROJECTS_ROOT}/cerebralstratum-frontend'
-    id: 1-dependencies
+      label: Initialize project and install dependencies
+      workingDir: '${PROJECT_SOURCE}'
+    id: 1-init-and-install-dependencies
   - exec:
       commandLine: npm run start:dev
       component: nodejs
       group:
         kind: run
       label: Run the web app
-      workingDir: '${PROJECTS_ROOT}/cerebralstratum-frontend'
+      workingDir: '${PROJECT_SOURCE}/patternfly-react-seed'
     id: 2-run

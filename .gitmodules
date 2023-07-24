@@ -1,0 +1,3 @@
+[submodule "patternfly-react-seed"]
+path = patternfly-react-seed
+url = https://github.com/ahussey-redhat/patternfly-react-seed.git
