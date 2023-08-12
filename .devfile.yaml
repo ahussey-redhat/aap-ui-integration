@@ -42,11 +42,16 @@ components:
       size: 200G
   - name: pgadmin
     container:
+      env:
+        - name: PGADMIN_SETUP_EMAIL
+          value: 'admin@example.com'
+        - name: PGADMIN_SETUP_PASSWORD
+          value: admin
       cpuLimit: "2.0"
       cpuRequest: 200m
       memoryLimit: 2Gi
       memoryRequest: 256Mi
-      image: 'registry.connect.redhat.com/crunchydata/crunchy-pgadmin4:latest'
+      image: 'registry.connect.redhat.com/crunchydata/crunchy-pgadmin4@sha256:e870ea2e6bc799723fc3310cb14efef750ef4db69bf50f0ecf36aaf1206a0435'
       mountSources: true
       sourceMapping: /projects
       memoryLimit: 2G
@@ -58,9 +63,6 @@ components:
       volumeMounts:
         - name: pgadmin-storage
           path: /run/httpd
-      command:
-      - sleep
-      - infinity
 commands:
   - exec:
       commandLine: git submodule update --init --recursive patternfly-react-seed && cd patternfly-react-seed && npm install
