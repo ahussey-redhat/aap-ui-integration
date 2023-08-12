@@ -58,6 +58,8 @@ components:
       volumeMounts:
         - name: pgadmin-storage
           path: /run/httpd
+      command:
+      - "/opt/crunchy/bin/start-pgadmin4.sh"
 commands:
   - exec:
       commandLine: git submodule update --init --recursive patternfly-react-seed && cd patternfly-react-seed && npm install
@@ -83,4 +85,3 @@ commands:
       label: Run tests
       workingDir: '${PROJECT_SOURCE}/patternfly-react-seed'
     id: 3-test
-      
