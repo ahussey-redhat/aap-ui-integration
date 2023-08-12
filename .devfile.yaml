@@ -59,7 +59,8 @@ components:
         - name: pgadmin-storage
           path: /run/httpd
       command:
-        - '$CCPROOT/examples/kube/pgadmin4-http/run.sh'
+        - sleep
+        - infinity
 commands:
   - exec:
       commandLine: git submodule update --init --recursive patternfly-react-seed && cd patternfly-react-seed && npm install
