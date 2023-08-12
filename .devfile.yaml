@@ -84,5 +84,5 @@ commands:
         kind: test
       label: Run tests
       workingDir: '${PROJECT_SOURCE}/patternfly-react-seed'
-      id: 3-test
+    id: 3-test
       
