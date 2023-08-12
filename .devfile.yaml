@@ -36,6 +36,30 @@ components:
       command:
         - sleep
         - infinity
+  - name: pgadmin-storage
+    volume:
+      ephemeral: true
+      size: 200G
+  - name: pgadmin
+    container:
+      cpuLimit: "2.0"
+      cpuRequest: 200m
+      memoryLimit: 2Gi
+      memoryRequest: 256Mi
+      image: 'registry.connect.redhat.com/crunchydata/crunchy-pgadmin4:latest'
+      mountSources: true
+      sourceMapping: /projects
+      memoryLimit: 2G
+      endpoints:
+        - exposure: public
+          name: pgadmin
+          protocol: http
+          targetPort: 5050
+      volumeMounts:
+        - name: pgadmin-storage
+          path: /run/httpd
+      command:
+        - '$CCPROOT/examples/kube/pgadmin4-http/run.sh'
 commands:
   - exec:
       commandLine: git submodule update --init --recursive patternfly-react-seed && cd patternfly-react-seed && npm install
