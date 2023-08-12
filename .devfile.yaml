@@ -53,3 +53,11 @@ commands:
       label: Run the web app
       workingDir: '${PROJECT_SOURCE}/patternfly-react-seed'
     id: 2-run
+  - exec:
+      commandLine: npm run test
+      component: nodejs
+      group:
+        kind: test
+      label: Run tests
+      workingDir: '${PROJECT_SOURCE}/patternfly-react-seed'
+      
