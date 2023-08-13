@@ -63,6 +63,9 @@ components:
       volumeMounts:
         - name: pgadmin-storage
           path: /run/httpd
+      command:
+        - sleep
+        - infinity
 commands:
   - exec:
       commandLine: git submodule update --init --recursive patternfly-react-seed && cd patternfly-react-seed && npm install
