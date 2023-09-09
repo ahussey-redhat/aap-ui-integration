@@ -36,10 +36,6 @@ components:
       command:
         - sleep
         - infinity
-  - name: pgadmin-storage
-    volume:
-      ephemeral: true
-      size: 200G
   - name: pgadmin
     container:
       env:
@@ -51,7 +47,7 @@ components:
       cpuRequest: 200m
       memoryLimit: 2Gi
       memoryRequest: 256Mi
-      image: 'registry.connect.redhat.com/crunchydata/crunchy-pgadmin4@sha256:e870ea2e6bc799723fc3310cb14efef750ef4db69bf50f0ecf36aaf1206a0435'
+      image: 'registry.connect.redhat.com/crunchydata/crunchy-pgadmin4@sha256:0ef89c7e781dca5f8f7e4d2289b40632a02c6098ef07f0c97943755b85eff606'
       mountSources: true
       sourceMapping: /projects
       memoryLimit: 2G
@@ -60,9 +56,6 @@ components:
           name: pgadmin
           protocol: http
           targetPort: 5050
-      volumeMounts:
-        - name: pgadmin-storage
-          path: /run/httpd
       command:
         - sleep
         - infinity
