@@ -51,7 +51,7 @@ components:
       cpuRequest: 200m
       memoryLimit: 2Gi
       memoryRequest: 256Mi
-      image: 'hub.docker.com/dpage/pgadmin4:latest'
+      image: 'docker.io/dpage/pgadmin4:latest'
       mountSources: true
       sourceMapping: /projects
       memoryLimit: 2G
