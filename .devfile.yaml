@@ -60,9 +60,6 @@ components:
           name: pgadmin
           protocol: http
           targetPort: 5050
-      command:
-        - sleep
-        - infinity
 commands:
   - exec:
       commandLine: git submodule update --init --recursive patternfly-react-seed && cd patternfly-react-seed && npm install
