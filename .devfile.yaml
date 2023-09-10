@@ -39,15 +39,19 @@ components:
   - name: pgadmin
     container:
       env:
-        - name: PGADMIN_SETUP_EMAIL
+        - name: PGADMIN_DEFAULT_EMAIL
           value: 'admin@example.com'
-        - name: PGADMIN_SETUP_PASSWORD
+        - name: PGADMIN_DEFAULT_PASSWORD
           value: admin
+        - name: PGADMIN_LISTEN_ADDRESS
+          value: '0.0.0.0'
+        - name: PGADMIN_LISTEN_PORT
+          value: 5050
       cpuLimit: "2.0"
       cpuRequest: 200m
       memoryLimit: 2Gi
       memoryRequest: 256Mi
-      image: 'registry.connect.redhat.com/crunchydata/crunchy-pgadmin4@sha256:0ef89c7e781dca5f8f7e4d2289b40632a02c6098ef07f0c97943755b85eff606'
+      image: 'hub.docker.com/dpage/pgadmin4:latest'
       mountSources: true
       sourceMapping: /projects
       memoryLimit: 2G
