@@ -46,7 +46,7 @@ components:
         - name: PGADMIN_LISTEN_ADDRESS
           value: '0.0.0.0'
         - name: PGADMIN_LISTEN_PORT
-          value: 5050
+          value: '5050'
       cpuLimit: "2.0"
       cpuRequest: 200m
       memoryLimit: 2Gi
